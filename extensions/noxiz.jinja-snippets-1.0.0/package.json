@@ -1,0 +1,56 @@
+{
+	"name": "jinja-snippets",
+	"displayName": "Jinja Snippets",
+	"description": "Jinja Snippets is a fast, and attractive way to build Jinja / HTML templates in isual Studio Code",
+	"version": "1.0.0",
+	"icon": "logo.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/noxizcode/jinja-snippets"
+	},
+	"publisher": "noxiz",
+	"author": {
+		"name": "EKEN Arnold"
+	},
+	"engines": {
+		"vscode": "^1.61.0"
+	},
+	"categories": [
+		"Snippets"
+	],
+	"keywords": [
+		"jinja",
+		"jinja2",
+		"jinja3",
+		"templates",
+		"template-engine",
+		"snippets",
+		"python",
+		"flask"
+	],
+	"contributes": {
+		"snippets": [
+			{
+				"language": "jinja",
+				"path": "./snippets/snippets.code-snippets"
+			},
+			{
+				"language": "html",
+				"path": "./snippets/snippets.code-snippets"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "35a83534-f70c-420a-aa4f-a9da7b20809a",
+		"publisherId": "b9a90e1d-6ec8-4154-91fc-8baa83632475",
+		"publisherDisplayName": "noxiz",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1730435743001,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery"
+	}
+}

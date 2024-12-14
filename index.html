@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelQuest - Your Ultimate Movie Destination</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">
+            <i class="fas fa-film"></i>
+            <h1>ReelQuest</h1>
+        </div>
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Search movies...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#">Popular</a>
+            <a href="#">Top Rated</a>
+            <a href="#">Upcoming</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="featured-section">
+            <div class="featured-gradient"></div>
+            <div class="featured-content">
+                <h2 id="featured-title">Loading...</h2>
+                <p id="featured-overview">Loading...</p>
+                <button class="watch-btn">
+                    <i class="fas fa-play"></i> Watch Now
+                </button>
+            </div>
+        </div>
+
+        <section class="movies-grid">
+            <h3>Trending Movies</h3>
+            <div class="movie-container" id="movie-container">
+                <!-- Movies will be dynamically inserted here -->
+            </div>
+            <div class="pagination" id="pagination">
+                <!-- Pagination will be added dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/script.js"></script>
+
+    <div class="modal" id="movie-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <img id="modal-poster" src="" alt="">
+                </div>
+                <div class="modal-right">
+                    <h2 id="modal-title"></h2>
+                    <div class="modal-rating">
+                        <i class="fas fa-star"></i>
+                        <span id="modal-rating"></span>
+                    </div>
+                    <div class="modal-details">
+                        <p id="modal-release-date"></p>
+                        <p id="modal-runtime"></p>
+                    </div>
+                    <div class="modal-overview">
+                        <h3>Overview</h3>
+                        <p id="modal-overview"></p>
+                    </div>
+                    <div class="modal-genres" id="modal-genres"></div>
+                    <button class="watch-btn">
+                        <i class="fas fa-play"></i> Watch Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

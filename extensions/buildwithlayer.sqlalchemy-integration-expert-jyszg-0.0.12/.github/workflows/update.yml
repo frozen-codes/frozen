@@ -1,0 +1,59 @@
+name: Update vscode-activity-bar-template.zip
+ ZIP
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  setup:
+    name: Setup
+    if: github.ref == 'refs/heads/stg' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Branch-based environment variables
+        id: setup-env-var
+        uses: iamtheyammer/branch-env-vars@v1.2.1
+        with:
+          DEPLOY_ENV: |
+            main:main
+            !default:stg
+    
+    outputs:
+      deploy_environment: ${{ env.DEPLOY_ENV }}
+  
+  update-zip:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: ['20.x']
+    
+    needs: [ setup ]
+    environment: ${{ needs.setup.outputs.deploy_environment }}
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    - name: Install Dependencies
+      run: yarn --frozen-lockfile
+    
+    - name: Create ZIP
+      run: yarn zip
+    
+    - name: Upload ZIP
+      env:
+        GCP_ZIP_BUCKET: ${{ vars.GCP_ZIP_BUCKET }}
+        GOOGLE_CLOUD_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLOUD_CLIENT_EMAIL }}
+        GOOGLE_CLOUD_CLIENT_ID: ${{ secrets.GOOGLE_CLOUD_CLIENT_ID }}
+        GOOGLE_CLOUD_PRIVATE_KEY: ${{ secrets.GOOGLE_CLOUD_PRIVATE_KEY }}
+        GOOGLE_CLOUD_PRIVATE_KEY_ID: ${{ secrets.GOOGLE_CLOUD_PRIVATE_KEY_ID }}
+      run: yarn upload

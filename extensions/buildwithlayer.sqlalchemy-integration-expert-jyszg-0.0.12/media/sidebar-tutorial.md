@@ -1,0 +1,1 @@
+<img src="../icon.png" alt="icon" width="192" height="192"><img src="./arrow.svg" alt="arrow" width="192" height="192">

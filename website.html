@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Visionary Vault</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2d3436;
+            --accent-color: #e056fd;
+            --secondary-color: #686de0;
+            --background-color: #f1f2f6;
+            --text-color: #2d3436;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCI+CiAgPHBhdGggZD0iTTI1LDI1IEwwLDI1IEwyNSwwIEw1MCwyNSBMMjUsNTAgTDI1LDI1IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz4KPC9zdmc+');
+            opacity: 0.1;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Gallery Grid */
+        .gallery-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .art-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .art-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .art-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .art-card:hover .art-image {
+            transform: scale(1.05);
+        }
+
+        .art-info {
+            padding: 1.5rem;
+        }
+
+        .art-category {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .art-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .art-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .buy-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Filter Section */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Loading Animation */
+        .loading {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>AI Visionary Vault</h1>
+            <p>Unleashing AI-Generated Masterpieces</p>
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <h2>AI Visionary Vault</h2>
+            <div class="nav-links">
+                <a href="#gallery">Gallery</a>
+                <a href="#collections">Collections</a>
+                <a href="#prints">Prints</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="gallery-container">
+        <div class="filters">
+            <button class="filter-btn active" data-category="all">All Artworks</button>
+            <button class="filter-btn" data-category="abstract">Abstract</button>
+            <button class="filter-btn" data-category="landscape">Landscapes</button>
+            <button class="filter-btn" data-category="portrait">Portraits</button>
+        </div>
+
+        <div class="gallery-grid" id="gallery">
+            <!-- Dynamic content will be loaded here -->
+        </div>
+    </main>
+
+    <script>
+        // Sample data - Replace with your actual data
+        const artworks = [
+            {
+                id: 1,
+                title: "Cosmic Dreams",
+                category: "abstract",
+                price: "₹3,999",
+                image: "path/to/your/cosmic-dreams.jpg",
+                description: "AI-generated abstract cosmic art"
+            },
+            {
+                id: 2,
+                title: "Digital Landscape",
+                category: "landscape",
+                price: "₹4,999",
+                image: "path/to/your/digital-landscape.jpg",
+                description: "AI-generated landscape art"
+            },
+            {
+                id: 3,
+                title: "Neural Portrait",
+                category: "portrait",
+                price: "₹5,999",
+                image: "path/to/your/neural-portrait.jpg",
+                description: "AI-generated portrait art"
+            }
+            // Add more items as needed
+        ];
+
+        // Function to create artwork cards
+        function createArtworkCard(artwork) {
+            return `
+                <div class="art-card" data-category="${artwork.category}">
+                    <img src="${artwork.image}" alt="${artwork.title}" class="art-image">
+                    <div class="art-info">
+                        <div class="art-category">${artwork.category}</div>
+                        <h3 class="art-title">${artwork.title}</h3>
+                        <div class="art-price">${artwork.price}</div>
+                        <button class="buy-btn">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load artworks
+        function loadArtworks(category = 'all') {
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '<div class="loading"></div>';
+
+            setTimeout(() => {
+                const filteredArtworks = category === 'all' 
+                    ? artworks 
+                    : artworks.filter(art => art.category === category);
+
+                gallery.innerHTML = filteredArtworks
+                    .map(artwork => createArtworkCard(artwork))
+                    .join('');
+            }, 500); // Simulated loading delay
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                loadArtworks(button.dataset.category);
+            });
+        });
+
+        // Initial load
+        loadArtworks();
+    </script>
+</body>
+</html>

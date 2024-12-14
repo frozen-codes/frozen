@@ -1,0 +1,109 @@
+/* Enhanced animations */
+.glitch-text {
+    position: relative;
+    animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: 0.05em 0 0 var(--accent-color),
+                     -0.05em -0.025em 0 #ff0080;
+    }
+    14% {
+        text-shadow: 0.05em 0 0 var(--accent-color),
+                     -0.05em -0.025em 0 #ff0080;
+    }
+    15% {
+        text-shadow: -0.05em -0.025em 0 var(--accent-color),
+                     0.025em 0.025em 0 #ff0080;
+    }
+    49% {
+        text-shadow: -0.05em -0.025em 0 var(--accent-color),
+                     0.025em 0.025em 0 #ff0080;
+    }
+    50% {
+        text-shadow: 0.025em 0.05em 0 var(--accent-color),
+                     0.05em 0 0 #ff0080;
+    }
+    99% {
+        text-shadow: 0.025em 0.05em 0 var(--accent-color),
+                     0.05em 0 0 #ff0080;
+    }
+    100% {
+        text-shadow: -0.025em 0 0 var(--accent-color),
+                     -0.025em -0.025em 0 #ff0080;
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hover-glow {
+    transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* Loading Animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--primary-100);
+    border-top: 4px solid var(--primary-600);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Card Hover Animation */
+@keyframes cardHover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+.movie-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+    animation: cardHover 0.3s ease forwards;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Modal Animation */
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-content {
+    animation: modalIn 0.3s ease forwards;
+}
+
+/* Add more animations as needed */ 

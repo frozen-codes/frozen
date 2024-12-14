@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details - ReelQuest</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">
+            <i class="fas fa-film"></i>
+            <h1>ReelQuest</h1>
+        </div>
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </nav>
+
+    <main class="movie-details-container">
+        <div class="movie-backdrop">
+            <div class="backdrop-gradient"></div>
+        </div>
+        <div class="movie-details">
+            <div class="movie-poster">
+                <img id="movie-poster" src="" alt="">
+            </div>
+            <div class="movie-info-detailed">
+                <h1 id="movie-title"></h1>
+                <div class="movie-meta">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span id="movie-rating"></span>
+                    </div>
+                    <span id="movie-release-date"></span>
+                    <span id="movie-runtime"></span>
+                </div>
+                <div id="movie-genres" class="genres"></div>
+                <div class="overview">
+                    <h3>Overview</h3>
+                    <p id="movie-overview"></p>
+                </div>
+                <button class="watch-btn">
+                    <i class="fas fa-play"></i> Watch Now
+                </button>
+                <div class="cast-section">
+                    <h3>Cast</h3>
+                    <div class="cast-container" id="movie-cast">
+                        <!-- Cast will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/config.js"></script>
+    <script src="js/movie-details.js"></script>
+</body>
+</html> 

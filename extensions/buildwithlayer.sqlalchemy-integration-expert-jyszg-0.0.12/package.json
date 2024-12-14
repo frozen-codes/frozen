@@ -1,0 +1,182 @@
+{
+	"name": "sqlalchemy-integration-expert-jYSzG",
+	"displayName": "SQLAlchemy",
+	"publisher": "buildwithlayer",
+	"description": "An AI Chat System Trained on the latest SQLAlchemy Documentation",
+	"icon": "./icon.png",
+	"version": "0.0.12",
+	"engines": {
+		"vscode": "^1.91.0"
+	},
+	"categories": [
+		"AI",
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./dist/extension.js",
+	"extensionDependencies": [
+		"github.copilot-chat"
+	],
+	"contributes": {
+		"chatParticipants": [
+			{
+				"id": "sqlalchemy-integration-expert-jYSzG",
+				"name": "sqlalchemy",
+				"fullName": "SQLAlchemy",
+				"description": "Ask me anything!",
+				"isSticky": true,
+				"commands": [
+					{
+						"name": "feedback",
+						"description": "Give feedback on the product"
+					}
+				]
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "sqlalchemy-integration-expert-jYSzG",
+					"title": "SQLAlchemy",
+					"icon": "icon.png"
+				}
+			]
+		},
+		"views": {
+			"sqlalchemy-integration-expert-jYSzG": [
+				{
+					"type": "webview",
+					"id": "sqlalchemy-integration-expert-jYSzG.Webview",
+					"name": "Webview",
+					"when": "sqlalchemy-integration-expert-jYSzG.sidebarVisible == true"
+				}
+			]
+		},
+		"walkthroughs": [
+			{
+				"id": "sqlalchemy-integration-expert-jYSzG.walkthrough",
+				"title": "Getting started with SQLAlchemy",
+				"description": "This walkthrough will guide you through the features of SQLAlchemy.",
+				"steps": [
+					{
+						"id": "sqlalchemy-integration-expert-jYSzG.disableSidebarWalkthroughStep",
+						"title": "Do you have a Github Copilot Subscription?",
+						"description": "SQLAlchemy offers an experience for those with and without a Github Copilot subscription, but we recommend the Copilot experience for those with an existing subscription.\n[Yes](command:sqlalchemy-integration-expert-jYSzG.disableSidebar)\n[No](command:sqlalchemy-integration-expert-jYSzG.enableSidebar)",
+						"media": {
+							"image": {
+								"dark": "./media/copilot-logo-dark.svg",
+								"light": "./media/copilot-logo-light.svg",
+								"hc": "./media/copilot-logo-dark.svg",
+								"hcLight": "./media/copilot-logo-light.svg"
+							},
+							"altText": "GitHub Copilot Logo"
+						},
+						"completionEvents": [
+							"onCommand:sqlalchemy-integration-expert-jYSzG.disableSidebar",
+							"onCommand:sqlalchemy-integration-expert-jYSzG.enableSidebar"
+						]
+					},
+					{
+						"id": "sqlalchemy-integration-expert-jYSzG.copilotInstructionWalkthroughStep",
+						"title": "Using the SQLAlchemy Copilot Participant",
+						"description": "You can activate the SQLAlchemy Copilot Participant by @ mentioning the participant in a Copilot message (e.g., **``@sqlalchemy``** Your question).",
+						"media": {
+							"image": "./media/participant-tutorial.gif",
+							"altText": "Copilot Participant Tutorial"
+						},
+						"when": "sqlalchemy-integration-expert-jYSzG.sidebarVisible == false"
+					},
+					{
+						"id": "sqlalchemy-integration-expert-jYSzG.sidebarChatInstructionWalkthroughStep",
+						"title": "Using the SQLAlchemy Sidebar Chat",
+						"description": "You can activate the SQLAlchemy Sidebar Chat by clicking the SQLAlchemy icon in the activity bar.",
+						"media": {
+							"markdown": "./media/sidebar-tutorial.md"
+						},
+						"when": "sqlalchemy-integration-expert-jYSzG.sidebarVisible == true"
+					}
+				]
+			}
+		],
+		"commands": [
+			{
+				"command": "sqlalchemy-integration-expert-jYSzG.resetChat",
+				"title": "Reset Chat",
+				"icon": "restart_icon.png"
+			},
+			{
+				"command": "sqlalchemy-integration-expert-jYSzG.disableSidebar",
+				"title": "Disable Sidebar Chat"
+			},
+			{
+				"command": "sqlalchemy-integration-expert-jYSzG.enableSidebar",
+				"title": "Enable Sidebar Chat"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "sqlalchemy-integration-expert-jYSzG.resetChat",
+					"when": "view == sqlalchemy-integration-expert-jYSzG.Webview",
+					"group": "navigation"
+				}
+			]
+		},
+		"configuration": {
+			"type": "object",
+			"properties": {
+				"sqlalchemy-integration-expert-jYSzG.sidebarChatDisabled": {
+					"type": "boolean",
+					"default": false,
+					"description": "Disable the sidebar chat"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "vscode-test",
+		"fill": "node ./scripts/template.mjs",
+		"zip": "node ./scripts/zip.mjs",
+		"upload": "node ./scripts/upload.mjs"
+	},
+	"devDependencies": {
+		"@google-cloud/storage": "^7.12.0",
+		"@types/mocha": "^10.0.6",
+		"@types/node": "18.x",
+		"@types/vscode": "^1.87.0",
+		"@typescript-eslint/eslint-plugin": "^7.4.0",
+		"@typescript-eslint/parser": "^7.4.0",
+		"@vscode/test-cli": "^0.0.8",
+		"@vscode/test-electron": "^2.3.9",
+		"dotenv": "^16.4.5",
+		"eslint": "^8.57.0",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.3.3",
+		"webpack": "^5.93.0",
+		"webpack-cli": "^5.1.4"
+	},
+	"dependencies": {},
+	"__metadata": {
+		"id": "f748fdee-2fbe-481c-a126-ed5acb7680b8",
+		"publisherId": "20d2a339-3284-4a94-a14e-2c38bac96c0c",
+		"publisherDisplayName": "buildwithlayer",
+		"targetPlatform": "undefined",
+		"isApplicationScoped": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1732527608819,
+		"pinned": false,
+		"preRelease": false,
+		"source": "gallery"
+	}
+}
