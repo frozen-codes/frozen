@@ -1,1 +1,0 @@
-$CODEWL_README
